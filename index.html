@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Service Management</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-mobile-alt"></i>
+                <span>Mobile Service</span>
+            </div>
+            <div class="nav-links">
+                <a href="#dashboard" class="active">Dashboard</a>
+                <a href="#services">Services</a>
+                <a href="#technicians">Technicians</a>
+                <a href="#reports">Reports</a>
+            </div>
+            <div class="user-menu">
+                <div class="notifications">
+                    <i class="far fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="profile">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                    <span>Admin</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dashboard" id="dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <div class="header-left">
+                        <h1>Service Dashboard</h1>
+                        <p class="date-display"></p>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search services...">
+                        </div>
+                        <button class="btn btn-primary" onclick="showNewServiceForm()">
+                            <i class="fas fa-plus"></i> New Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card" data-aos="fade-up">
+                        <div class="stat-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Services</h3>
+                            <span class="stat-number stat-active">24</span>
+                            <span class="stat-change positive">+12% this week</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Services</h3>
+                            <span class="stat-number stat-pending">12</span>
+                            <span class="stat-change warning">+5% this week</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Completed Today</h3>
+                            <span class="stat-number stat-completed">8</span>
+                            <span class="stat-change positive">+2 since yesterday</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Available Technicians</h3>
+                            <span class="stat-number stat-technicians">5</span>
+                            <span class="stat-change">Active now</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="service-queue" data-aos="fade-right">
+                        <div class="section-header">
+                            <h2>Service Queue</h2>
+                            <div class="queue-filters">
+                                <select class="status-filter">
+                                    <option value="all">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="in-progress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                                <select class="priority-filter">
+                                    <option value="all">All Priority</option>
+                                    <option value="high">High</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="queue-list">
+                            <!-- Service items will be dynamically added here -->
+                        </div>
+                    </div>
+
+                    <div class="dashboard-sidebar" data-aos="fade-left">
+                        <div class="technician-status">
+                            <h2>Technician Status</h2>
+                            <div class="tech-list">
+                                <!-- Technician items will be dynamically added here -->
+                            </div>
+                        </div>
+                        
+                        <div class="recent-activities">
+                            <h2>Recent Activities</h2>
+                            <div class="activity-list">
+                                <!-- Activity items will be dynamically added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="newServiceModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>New Service Request</h2>
+            <form id="newServiceForm">
+                <div class="form-grid">
+                    <!-- Customer Information -->
+                    <div class="form-section">
+                        <h3>Customer Information</h3>
+                        <div class="form-group">
+                            <label for="customerName">Customer Name</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email</label>
+                            <input type="email" id="customerEmail" name="customerEmail">
+                        </div>
+                    </div>
+
+                    <!-- Device Information -->
+                    <div class="form-section">
+                        <h3>Device Information</h3>
+                        <div class="form-group">
+                            <label for="deviceType">Device Type</label>
+                            <select id="deviceType" name="deviceType" required>
+                                <option value="">Select Device</option>
+                                <option value="iphone">iPhone</option>
+                                <option value="samsung">Samsung</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="deviceModel">Model</label>
+                            <input type="text" id="deviceModel" name="deviceModel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="serialNumber">Serial Number</label>
+                            <input type="text" id="serialNumber" name="serialNumber">
+                        </div>
+                    </div>
+
+                    <!-- Service Information -->
+                    <div class="form-section">
+                        <h3>Service Details</h3>
+                        <div class="form-group">
+                            <label for="serviceType">Service Type</label>
+                            <select id="serviceType" name="serviceType" required>
+                                <option value="">Select Service</option>
+                                <option value="repair">Repair</option>
+                                <option value="maintenance">Maintenance</option>
+                                <option value="diagnostic">Diagnostic</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority</label>
+                            <select id="priority" name="priority" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Problem Description</label>
+                            <textarea id="description" name="description" rows="3" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Service Request</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
